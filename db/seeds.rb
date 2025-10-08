@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+# Hard-code 2 teams
+
+Team.create!(name: "Haggan", win: 0, loss: 0)
+Team.create!(name: "Heights", win: 0, loss: 0)
+Team.create!(name: "Isa", win: 0, loss: 0)
+
+Game.create!(team1: "Haggan", team2: "Heights", team1score: 25, team2score: 20)
+Game.create!(team1: "Haggan", team2: "Isa", team1score: 19, team2score: 25)
+Game.create!(team1: "Heights", team2: "Isa", team1score: 25, team2score: 18)
