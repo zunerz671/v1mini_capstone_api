@@ -16,6 +16,8 @@ class GamesController < ApplicationController
       team2score: params[:team2score]
     )
 
+    authorize game
+
     if game.save
       render json: game
     else
@@ -25,6 +27,8 @@ class GamesController < ApplicationController
 
   def show
     game = Game.find(params[:id])
+
+    authorize game
 
     render json: game
   end
@@ -38,11 +42,15 @@ class GamesController < ApplicationController
       team2score: params[:team2score]
     )
 
+    authorize game
+
     render json: game
   end
 
   def delete
     game = Game.find(params[:id])
+
+    authorize game
 
     game.destroy
 

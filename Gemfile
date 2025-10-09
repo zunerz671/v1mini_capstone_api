@@ -13,6 +13,7 @@ gem "puma", ">= 5.0"
 
 gem "bcrypt", "~> 3.1.7" # For hashing passwords securely
 gem "jwt", "~> 2.2"      # For generating JSON Web Tokens
+gem "pundit"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]

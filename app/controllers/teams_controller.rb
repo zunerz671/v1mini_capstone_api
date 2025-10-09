@@ -15,6 +15,8 @@ class TeamsController < ApplicationController
       loss: params[:loss] || 0
     )
 
+    authorize team
+
     if team.save
       render json: team
     else
@@ -24,6 +26,8 @@ class TeamsController < ApplicationController
 
   def show
     team = Team.find(params[:id])
+
+    authorize team
 
     render json: team
   end
@@ -36,11 +40,15 @@ class TeamsController < ApplicationController
       loss: params[:loss]
     )
 
+    authorize team
+
     render json: team
   end
 
   def delete
     team = Team.find(params[:id])
+
+    authorize team
 
     team.destroy
 
