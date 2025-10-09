@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  after_action :send_email, only: [ :create, :update ]
+
   def index
     games = Game.all
 
@@ -44,5 +46,13 @@ class GamesController < ApplicationController
     game.destroy
 
     render json: { message: "Game deleted..." }
+  end
+
+  private
+
+  def send_email
+    puts " ---------- "
+    puts " Mimicing sending an email confirmation..."
+    puts " ---------- "
   end
 end

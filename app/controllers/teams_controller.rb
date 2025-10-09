@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  after_action :send_email, only: [ :create ]
+
   def index
     teams = Team.all
 
@@ -42,5 +44,13 @@ class TeamsController < ApplicationController
     team.destroy
 
     render json: { message: "Team deleted..." }
+  end
+
+  private
+
+  def send_email
+    puts " ---------- "
+    puts " Mimicing sending an email confirmation..."
+    puts " ---------- "
   end
 end
