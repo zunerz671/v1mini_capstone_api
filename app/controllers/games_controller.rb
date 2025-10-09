@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   after_action :send_email, only: [ :create, :update ]
+  before_action :authorize_request
 
   def index
     games = Game.all

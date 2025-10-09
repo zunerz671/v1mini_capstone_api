@@ -19,4 +19,7 @@ Rails.application.routes.draw do
   get "/games/:id" => "games#show"
   put "/games/:id" => "games#update"
   delete "/games/:id" => "games#destroy"
+
+  post "/signup" => "users#create"
+  post "/login" => "sessions#create"
 end
