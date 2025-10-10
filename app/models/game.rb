@@ -1,4 +1,7 @@
 class Game < ApplicationRecord
+  belongs_to :team1, class_name: "Team"
+  belongs_to :team2, class_name: "Team"
+
   validates :team1, presence: true
   validates :team2, presence: true
   validates :team1score, presence: true

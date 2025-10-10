@@ -8,15 +8,28 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-# Hard-code 2 teams
+# --- Teams ---
+haggan  = Team.find_or_create_by!(name: "Haggan")  { |t| t.win = 0; t.loss = 0 }
+heights = Team.find_or_create_by!(name: "Heights") { |t| t.win = 0; t.loss = 0 }
+onra    = Team.find_or_create_by!(name: "Onra")    { |t| t.win = 0; t.loss = 0 }
 
-Team.create!(name: "Haggan", win: 0, loss: 0)
-Team.create!(name: "Heights", win: 0, loss: 0)
-Team.create!(name: "Onra", win: 0, loss: 0)
+# --- Games ---
+# NOTE: use Team objects, not strings
+Game.find_or_create_by!(team1: haggan,  team2: heights) { |g| g.team1score = 25; g.team2score = 20 }
+Game.find_or_create_by!(team1: haggan,  team2: onra)    { |g| g.team1score = 19; g.team2score = 25 }
+Game.find_or_create_by!(team1: heights, team2: onra)    { |g| g.team1score = 17; g.team2score = 25 }
 
-Game.create!(team1: "Haggan", team2: "Heights", team1score: 25, team2score: 20)
-Game.create!(team1: "Haggan", team2: "Onra", team1score: 19, team2score: 25)
-Game.create!(team1: "Heights", team2: "Onra", team1score: 17, team2score: 25)
+# --- Users ---
+User.find_or_create_by!(email: "user1@test.com") do |u|
+  u.name = "user1"
+  u.password = "123"
+  u.password_confirmation = "123"
+  u.role = "user"
+end
 
-User.create!(name: "user1", email: "user1@test.com", password: "123", password_confirmation: "123", role: "user")
-User.create!(name: "admin1", email: "admin1@test.com", password: "123", password_confirmation: "123", role: "admin")
+User.find_or_create_by!(email: "admin1@test.com") do |u|
+  u.name = "admin1"
+  u.password = "123"
+  u.password_confirmation = "123"
+  u.role = "admin"
+end
