@@ -12,12 +12,18 @@
 haggan  = Team.find_or_create_by!(name: "Haggan")  { |t| t.win = 0; t.loss = 0 }
 heights = Team.find_or_create_by!(name: "Heights") { |t| t.win = 0; t.loss = 0 }
 onra    = Team.find_or_create_by!(name: "Onra")    { |t| t.win = 0; t.loss = 0 }
+# Last team to add with admin1
+# legacy    = Team.find_or_create_by!(name: "Legacy")    { |t| t.win = 0; t.loss = 0 }
 
 # --- Games ---
 # NOTE: use Team objects, not strings
 Game.find_or_create_by!(team1: haggan,  team2: heights) { |g| g.team1score = 25; g.team2score = 20 }
 Game.find_or_create_by!(team1: haggan,  team2: onra)    { |g| g.team1score = 19; g.team2score = 25 }
 Game.find_or_create_by!(team1: heights, team2: onra)    { |g| g.team1score = 17; g.team2score = 25 }
+# 3 more games to add with admin1 after creating the fourth team (Legacy)
+# Game.find_or_create_by!(team1: haggan,  team2: legacy) { |g| g.team1score = 25; g.team2score = 18 }
+# Game.find_or_create_by!(team1: heights,  team2: legacy) { |g| g.team1score = 25; g.team2score = 16 }
+# Game.find_or_create_by!(team1: heights,  team2: legacy) { |g| g.team1score = 15; g.team2score = 25 }
 
 # --- Users ---
 User.find_or_create_by!(email: "user1@test.com") do |u|

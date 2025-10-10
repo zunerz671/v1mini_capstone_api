@@ -9,19 +9,13 @@ class GamesController < ApplicationController
   end
 
   def create
-    game = Game.new(
-      team1: params[:team1],
-      team2: params[:team2],
-      team1score: params[:team1score],
-      team2score: params[:team2score]
-    )
-
+    game = Game.new(game_params)   # uses team1_id/team2_id
     authorize game
 
     if game.save
-      render json: game
+      render json: game, status: :created
     else
-      render json: game.errors, status: :unprocessable_entity
+      render json: { errors: game.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -58,6 +52,11 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def game_params
+    # expects: game[team1_id], game[team2_id], game[team1score], game[team2score]
+    params.require(:game).permit(:team1_id, :team2_id, :team1score, :team2score)
+  end
 
   def send_email
     puts " ---------- "
